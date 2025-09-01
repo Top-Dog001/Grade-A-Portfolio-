@@ -1,0 +1,1613 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Roboto+Mono:wght@400;500;700&family=Inter:wght@400;500;700&family=Poppins:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap');
+
+:root {
+  --section-padding: clamp(60px, 15vh, 200px) 30px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* * {
+  outline: 1px  solid white;
+} */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  width: calc(100vw - 1px);
+  min-height: 100vh;
+/*   background-color: #fdfadaaa;*/
+  background-color: black; 
+  font-family: 'Poppins';
+  color: #fff;
+  overflow-x: hidden;
+} 
+
+
+.invincible {
+  height: 150px;
+  background-color: black;
+}
+
+.tophead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 5vh;
+  margin-bottom: 70px;
+  padding: 13px 30px;
+  background-color: transparent;
+  backdrop-filter: blur(30px);
+  color: white;
+  font-size: 30px;
+  font-family: 'Space Grotesk', sans-serif;
+  position: fixed;   /* <— now it sticks */
+  top: 0;
+  left: 0;
+  z-index: 999;
+  backdrop-filter: blur(20px);
+
+  transition: transform 0.3s ease-in-out; /* smooth slide effect */
+}
+
+.tophead.hidden {
+  transform: translateY(-100%); /* moves it out of view */
+}
+
+.logo {
+/*  margin: 0 60px 0 0; */
+  font-family: 'Montserrat';
+  cursor: pointer;
+  transition: all 0.5s ease-in-out;
+  }
+  
+  .logo:hover {
+  transform: translateY(-3px) scale(1.1);
+/*  transform-origin: left; */
+  font-weight: 900;
+/*  margin: 0 60px 0 0;  */
+}
+  
+  .logo a {
+    text-decoration: none;
+    color: white;
+  }
+
+.logo .catch {
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.nav {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+}
+
+.nav a:hover {
+  transform: translateY(-2px) scale(1.2);
+}
+
+.nav a {
+  display: inline-block;
+  text-align: center;
+  margin-right: 25px;
+  text-decoration: none;
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  transition: 0.3s;
+  position: relative;
+  transition: transform 0.3s ease-in;
+}
+
+.nav a::after {
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background:  linear-gradient(
+  270deg,
+  #DF8908 10%,
+  #FF1d15 100%);
+  position: absolute;
+  transition: 0.5s ease-out;
+  transform: scaleX(0);
+  transform-origin: center;
+}
+
+.nav a:hover::after {
+  transform: scaleX(1);
+}
+
+.nav a.active {
+  background:
+  linear-gradient(
+  270deg,
+  #DF8908 10%,
+  #FF1d15 100%);
+  background-clip: text;
+  color: transparent; /* highlight color (matches your gradient) */
+  font-weight: bold;
+}
+
+.nav a:last-child {
+/*  margin-right: auto;  */
+}
+
+.btn {
+  text-wrap: nowrap;
+  background:
+  linear-gradient(
+  270deg,
+  #DF8908 10%,
+  #FF1d15 100%);
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+  font-family: 'Montserrat';
+  border-style: none;
+  outline: none;
+  border-radius: 25px;
+  padding: 8px 9px;
+  margin: 0;
+  cursor: pointer;
+  position: relative;
+    transition: transform .5s ease-out, border-radius 0.4s ease-out, box-shadow 0.25s ease-in-out;
+}
+
+.tophead .btn {
+/*  margin-left: 50px; */
+  box-sizing: border-box;
+  padding: 13px 9px;
+}
+
+
+/* HOVER: black fill + gradient border + gradient text */
+.btn:hover {
+  background: #000;                 /* inner fill turns black */
+  color: transparent;               /* text becomes transparent… */
+  background-image: linear-gradient(270deg, #DF8908 10%, #FF1d15 100%);
+  -webkit-background-clip: text;    /* …and shows gradient as text */
+  background-clip: text;
+  box-shadow: 
+  0 0 10px rgba(223, 137, 8, 0.9),   /* inner orange glow */
+  0 0 20px rgba(255, 29, 21, 0.8),   /* mid red glow */
+  0 0 40px rgba(223, 137, 8, 0.7),   /* outer orange halo */
+  0 0 60px rgba(255, 29, 21, 0.6);   /* far red aura */
+  transform: translateY(-2px) scale(1.1);
+}
+
+/* Gradient border using a masked pseudo-element */
+.btn:hover::before {
+  content: "";
+  position: absolute;
+  inset: 0;                         /* cover the button */
+  padding: 2px;                     /* border thickness */
+  border-radius: inherit;
+  background: linear-gradient(270deg, #DF8908 10%, #FF1d15 100%);
+
+  /* mask out the center so only the “stroke” remains */
+  -webkit-mask: 
+    linear-gradient(#000 0 0) content-box, 
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;      /* Chrome/Safari */
+          mask-composite: exclude;  /* Firefox */
+}
+
+/* your existing context styles can stay */
+.tophead .btn {
+  box-sizing: border-box;
+  padding: 13px 18px;
+}
+
+
+.hamburger {
+  display: none;
+}
+
+.dropdown {
+  display: none;
+}
+
+.catch {
+  font-size: 3rem;
+  font-weight: 900;
+  background:
+  linear-gradient(
+  270deg,
+  #DF8908 10%,
+  #FF1d15 100%);
+  background-clip: text;
+  color: transparent;
+}
+
+.Home {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  background-color: black;
+}
+
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: var(--section-padding);
+  box-sizing: border-box;
+}
+
+.hero-text {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  margin-right: 40px;
+  text-align: right;
+  align-content: flex-end;
+  box-sizing: border-box;
+}
+.hero h3 .catch {
+  font-size: 2rem;
+}
+
+
+.hero-text h1,
+.hero-text h3,
+.hero-text p {
+  padding-bottom: 1px;
+  width: 100%;
+  margin-bottom: 10px;
+  letter-spacing: 0.1rem;
+}
+
+ h1 {
+  font-size: 3rem;
+  font-weight: 900;
+  text-wrap: nowrap;
+  line-height: 3rem;
+}
+
+h3 {
+  font-size: 2rem;
+  font-weight: bold;
+  text-wrap: nowrap;
+  line-height: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+/*  letter-spacing: 0.1rem; */
+  line-height: 1.9rem;
+}
+
+.hero-text p {
+  padding: 0 0 0 27px;
+}
+
+.hero-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 450px;
+  height: 450px;
+  box-sizing: border-box;
+  overflow: visible;
+  margin-left: 30px;
+  border-radius: 50%;
+  }
+  
+
+.eagle {
+  width: 450px;
+  height: 450px;
+  border-radius: 50%; 
+/*  clip-path: circle(50% at 50% 50%); */
+  object-fit: cover;
+  transition: transform 0.3s ease-in;
+}
+
+.eagle:hover {
+  transform: scale(1.05);
+  animation: neon-glow 1.5s infinite alternate;
+}
+
+/* 🔥 animated gradient glow */
+@keyframes neon-glow {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(223, 137, 8, 0.7))
+            drop-shadow(0 0 10px rgba(255, 29, 21, 0.6));
+  }
+  100% {
+    filter: drop-shadow(0 0 15px rgba(223, 137, 8, 1))
+            drop-shadow(0 0 30px rgba(255, 29, 21, 1));
+  }
+}
+
+.togroupit {
+  display: block;
+  width: 100%;
+  overflow: visible;
+} 
+
+.social-icons {
+  display: flex;
+  margin-top: 1.5rem;
+  width: 100%;
+  gap: 10px;
+  padding: 0;
+  box-sizing: border-box; 
+  justify-content: flex-end; 
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center; 
+  justify-content: center; 
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  padding: 10px;
+
+  /* Gradient border trick */
+  border: 3px solid transparent;
+  background: 
+    linear-gradient(#111, #111) padding-box, /* inner background */
+    linear-gradient(270deg, #DF8908, #FF1d15) border-box; /* border */
+
+  text-decoration: none;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-in, border-color 0.2s ease-in, box-shadow 0.35s ease-out;
+}
+
+/* gradient text on the icon */
+.social-icons a i {
+  font-size: 2.5rem;
+  background: linear-gradient(270deg, #DF8908, #FF1d15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+
+.social-icons a:hover {
+  transform: scale(1.1) rotate(28deg);   /* pop effect */
+  border-color: white;     /* border changes on hover */
+  box-shadow: 
+  0 0 10px rgba(223, 137, 8, 0.9),   /* inner orange glow */
+  0 0 20px rgba(255, 29, 21, 0.8),   /* mid red glow */
+  0 0 40px rgba(223, 137, 8, 0.7),   /* outer orange halo */
+  0 0 60px rgba(255, 29, 21, 0.6);   /* far red aura */
+}
+
+.social-icons a:hover i {
+  background: none;        /* remove gradient */
+  color: white;            /* solid white icon */
+  -webkit-text-fill-color: white; /* ensure Chrome/Safari behave */
+}
+
+.info {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  padding: 5px 9px 0 0;
+  margin-top: 12px;
+/*  margin-left: 39%; */
+  overflow: visible;
+}
+
+.info .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+/*  width: 20%;*/
+/*  margin: 0 7px;  */
+  font-size: 17px;
+  font-weight: 500;
+  color: #111;
+  border-radius: 30px;
+}
+
+
+.info .btn:nth-child(1) {
+  font-weight: 600;
+  font-size: 19px;
+  width: auto;
+  padding: 12px 25px;
+  background: linear-gradient(270deg,
+  #DF9008 10%,
+  #FF1d15 100%);
+  color: black;
+  margin-right: 25px;
+}
+
+/* HOVER: black fill + gradient border + gradient text */
+.info .btn:hover:nth-child(1) {
+  background: #000;                 /* inner fill turns black */
+  color: transparent;               /* text becomes transparent… */
+  background-image: linear-gradient(270deg, #DF8908 10%, #FF1d15 100%);
+  -webkit-background-clip: text;    /* …and shows gradient as text */
+  background-clip: text;
+  box-shadow: 
+  0 0 10px rgba(223, 137, 8, 0.9),   /* inner orange glow */
+  0 0 20px rgba(255, 29, 21, 0.8),   /* mid red glow */
+  0 0 40px rgba(223, 137, 8, 0.7),   /* outer orange halo */
+  0 0 60px rgba(255, 29, 21, 0.6);   /* far red aura */
+  transform: translateY(-2px) scale(1.1);
+}
+
+
+.info .ah {
+/*  width: 30%; */
+ font-size: 19px;
+ font-weight: 800;
+ padding: 7px 35px;
+ border-radius: 30px;
+ position: relative;   / needed for ::before */
+ overflow: hidden;
+  /* Black background inside */
+  background-color: black;
+  /* Gradient border */
+  border: 2px solid transparent;
+  background-image: linear-gradient(black, black),
+  linear-gradient(270deg, #DF8908, #FF1d15);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  /* Hide the original text color */
+  color: transparent;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform .5s ease-out, border-radius 0.4s ease-out, box-shadow 0.25s ease-in-out;
+}
+
+/* Gradient text injected */
+.info .ah::before {
+  content: "Contact"; /* same as your button text */
+  position: absolute;
+  inset: 0; /* stretch to button */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: linear-gradient(270deg, #DF8908, #FF1d15);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.info .ah:hover { 
+box-shadow:
+  0 0 10px rgba(223, 137, 8, 0.9),   /* inner orange glow */
+  0 0 20px rgba(255, 29, 21, 0.8),   /* mid red glow */
+  0 0 40px rgba(223, 137, 8, 0.7),   /* outer orange halo */
+  0 0 60px rgba(255, 29, 21, 0.6);   /* far red aura */
+  transform:  translateY(-2px) scale(1.1);
+border-radius: 25px;
+}
+
+
+.About {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  background-color: #121212;
+  margin: 0;
+  padding: var(--section-padding);
+  box-sizing: border-box;
+}
+
+.About-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  width: 450px;
+  height: 450px;
+  box-sizing: border-box;
+  overflow: visible;
+  margin-right: 40px;
+  border-radius: 50%; 
+}
+
+.About .eagle {
+  width: 450px;
+  height: 450px;
+  border-radius: 50%; 
+  object-fit: cover;
+}
+
+.About-text {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  margin-left: 30px;
+  text-align: left;
+  align-content: flex-start;
+}
+
+.About h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-wrap: nowrap;
+  line-height: 4rem;
+  box-sizing: border-box;
+  padding: 5px 0;
+}
+
+.About .btn {
+  font-weight: 500;
+  font-size: 19px;
+  width: auto;
+  padding: 12px 18px;
+  margin-top: 20px;
+  background: linear-gradient(270deg,
+  #DF9008 10%,
+  #FF1d15 100%);
+  color: black;
+}
+
+.About .btn:hover {
+  background: #000;                 /* inner fill turns black */
+  color: transparent;               /* text becomes transparent… */
+  background-image: linear-gradient(270deg, #DF8908 10%, #FF1d15 100%);
+  -webkit-background-clip: text;    /* …and shows gradient as text */
+  background-clip: text;
+  box-shadow: 
+  0 0 10px rgba(223, 137, 8, 0.9),   /* inner orange glow */
+  0 0 20px rgba(255, 29, 21, 0.8),   /* mid red glow */
+  0 0 40px rgba(223, 137, 8, 0.7),   /* outer orange halo */
+  0 0 60px rgba(255, 29, 21, 0.6);   /* far red aura */
+  transform: translateY(-2px) scale(1.1);
+}
+
+.Services {
+  width: 100%;
+  height: auto;
+  padding: var(--section-padding);
+  box-sizing: border-box; 
+  background-color: black;
+}
+
+ .Services h2 {
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center; 
+  margin: 25px 0;  
+}
+
+.host {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  gap: 15px; 
+}
+
+.card1 {
+ text-align: center; 
+ color: black;
+ box-sizing: border-box;
+ background: linear-gradient(180deg,
+   #FF1d15 ,
+  #DF9008 );
+  border-radius: 20px;
+  height: 500px;
+  width: 80vw;
+  padding: 10px 10px;
+  transition: transform 0.3s ease-out;
+}
+
+.card1:hover {
+  transform: translateY(-2px) scale(1.2);
+  border-radius: 35px;
+  width: 77vw;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.4);
+}
+
+.s-logo {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 8.2rem;
+}
+
+.Services h3 {
+  font-size: 2.5rem;
+  line-height: 3.5rem;
+  margin-bottom: 0;
+}
+
+.Services p {
+  font-weight: 400;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.Projects {
+  width: 100%;
+  height: auto;
+  padding: var(--section-padding);
+  box-sizing: border-box;
+  background-color: #121212;
+}
+
+.Projects h2 {
+  width: 100%;
+  font-size: 3rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 25px 0;
+}
+
+.house2 {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.house3 {
+  display: grid;
+  grid-template-columns: 0.6fr 0.6fr 0.6fr;
+  grid-template-rows: 500px 500px 500px;
+  gap: 30px;
+  text-align: center;
+  width: 100%;
+}
+
+.card2 {
+  border: 2px solid transparent;
+  background-image: linear-gradient(black, black),
+                    linear-gradient(270deg, #DF8908, #FF1d15);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  
+  border-radius: 25px;
+  padding: 20px;
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.3s ease-out;
+}
+
+.card2:hover {
+  transform: scale(1.1);
+}
+
+.card-img {
+  width: 100%;
+  height: 200px;
+  border-radius: 15px;
+  object-fit: cover;
+  margin-bottom: 15px;
+}
+
+.house2 .btn {
+  margin-top: 15px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 25px;
+  font-weight: 500;
+  color: white;
+  background: linear-gradient(270deg, #DF8908, #FF1d15);
+  cursor: pointer;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.house2 .btn:hover {
+  background: #000;                 /* inner fill turns black */
+  color: transparent;               /* text becomes transparent… */
+  background-image: linear-gradient(270deg, #DF8908 10%, #FF1d15 100%);
+  -webkit-background-clip: text;    /* …and shows gradient as text */
+  background-clip: text;
+  box-shadow: 
+  0 0 5px rgba(223, 137, 8, 0.9),   /* inner orange glow */
+ 0 0 10px rgba(255, 29, 21, 0.8),   /* mid red glow */
+  0 0 20px rgba(223, 137, 8, 0.7),   /* outer orange halo */
+  0 0 30px rgba(255, 29, 21, 0.6);   /* far red aura */
+  transform: translateY(-2px) scale(1.1);
+}
+
+.Contact-form {
+  width: 100%;
+  height: auto;
+  padding: var(--section-padding);
+  box-sizing: border-box;
+  text-align: center;
+  background-color: black;
+}
+
+.Contact-form h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  text-wrap: nowrap;
+  line-height: 4rem;
+  box-sizing: border-box;
+  padding: 5px 0;
+}
+
+.house4 {
+  display: grid;
+  grid-template-columns: 51.9% 45%;
+  grid-template-rows: 150px auto;
+  text-align: center;
+  width: 100%;
+  height: 600px;
+  padding: 60px 20px;
+  justify-items: center;
+  gap: 25px;
+}
+
+.input1 {
+  width: 100%;
+  height: 370px; /* resize when ure through */
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.substance {
+  transition: transform 0.3s ease-in;
+  outline: none;
+}
+
+.substance:hover {
+  box-shadow: inset 0 0 8px rgba(223, 137, 8, 0.7),
+              inset 0 0 15px rgba(255, 29, 21, 0.6);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.input2 {
+/*  width: 400px; */
+  width: 100%; 
+  height: 370px;
+  margin: auto;
+  box-sizing: border-box;
+}
+
+.input2 .btn {
+  margin-top: 25px;
+  padding: 9px 17px;
+  color: black;
+  border-radius: 20px;
+  font-size: 19px;
+  cursor: pointer;
+}
+
+.input2 .btn:hover {
+  background: #000;                 /* inner fill turns black */
+  color: transparent;               /* text becomes transparent… */
+  background-image: linear-gradient(270deg, #DF8908 10%, #FF1d15 100%);
+  -webkit-background-clip: text;    /* …and shows gradient as text */
+  background-clip: text;
+  box-shadow: 
+  0 0 10px rgba(223, 137, 8, 0.9),   /* inner orange glow */
+  0 0 20px rgba(255, 29, 21, 0.8),   /* mid red glow */
+  0 0 40px rgba(223, 137, 8, 0.7),   /* outer orange halo */
+  0 0 60px rgba(255, 29, 21, 0.6);   /* far red aura */
+  transform: translateY(-2px) scale(1.1);
+}
+
+
+.Contact-form input {
+/*  width: 450px; */
+width: 100%;
+  height: 70px; /* To increase the output this guy*/
+  
+  padding: 20px 30px;
+  margin-bottom: 25px;
+  border-radius: 17px;
+  border: 3px solid Transparent; /* gradient trick can be added later */
+  
+  background-image: linear-gradient(black, black),
+                    linear-gradient(270deg, #DF8908, #FF1d15);
+                    
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: white;
+  font-size: 0.9rem;
+}
+
+.waste-em {
+  width: 100%;
+  height: 250px;     /* adjust this value */
+  resize: none;      /* disables drag resize (optional) */
+  
+  padding: 10px;
+  border-radius: 12px;
+  
+  border: 3px solid Transparent; /* gradient trick can be added later */
+  
+  background-image: linear-gradient(black, black),
+                    linear-gradient(270deg, #DF8908, #FF1d15);
+                    
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  color: white;
+  font-size: 1.5rem;
+  margin-top: 30px;
+  transition: transform 0.3s ease-in;
+  outline: none;
+}
+
+.waste-em:hover {
+  box-shadow: inset 0 0 8px rgba(223, 137, 8, 0.7),
+              inset 0 0 15px rgba(255, 29, 21, 0.6);
+  transform: translateY(-2px) scale(1.05);
+}
+
+.hooah {
+  width: 100%;
+  height: auto;
+  padding: var(--section-padding);
+  background-color: #121212;
+  text-align: center;
+  margin: 0;
+  bottom: 0;
+}
+
+.oorah {
+  justify-content: center;
+  align-items: center;
+}
+
+.hooah .social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+  gap: 25px;
+}
+
+.summary {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.summary a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: 0.9s;
+  position: relative;
+}
+
+.summary a::after {
+  content: "";
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background:  linear-gradient(
+  270deg,
+  #DF8908 10%,
+  #FF1d15 100%);
+  position: absolute;
+  transition: 0.5s ease-out;
+  transform: scaleX(0);
+  transform-origin: center;
+}
+
+.summary a:hover::after {
+  transform:  scaleX(1);
+}
+
+.summary a:hover {
+  transform: translateY(-2px) scale(1.2);
+}
+
+.sign-out h5 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.2rem;
+  font-weight: 300;
+  font-family: 'Roboto Mono', sans-serif;
+}
+
+.sign-out .catch {
+  font-weight: 300;
+  font-size: 1.2rem;
+  font-family: 'Montserrat';
+  padding: 0;
+}
+
+.sec-catch {
+  font-family: 'Montserrat';
+}
+
+
+         /* Mobile styles  */
+
+
+@media (max-width: 768px) {
+  
+  :root {
+  --section-padding: clamp(60px, 5vh, 80px) 15px;
+}
+  
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden; /* stops sideways scrolling */
+  }
+  
+  .tophead {
+    width: 100%;
+    padding: 9px 10px;
+   padding-bottom: 3px;
+    border-bottom: 1px solid transparent;
+  background-image: linear-gradient(black, black),
+                    linear-gradient(270deg, #DF8908, #FF1d15);
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  }
+  
+  .nav {
+display: none;
+}
+
+.tophead .btn {
+display: none;
+}
+
+.logo {
+margin: 0;
+position: relative;
+left: 0;
+font-size: 1.5rem;
+}
+
+.logo .catch {
+  font-size: 1.5rem;
+}
+
+
+
+
+
+.invincible {
+  height: 20px;
+  margin: 0;
+}
+
+.Home {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* centers items */
+    justify-content: center;
+ /*   margin: 0 12px; */ /* margin for all the contents */
+ background-color: black;
+ padding: var(--section-padding); 
+  }
+
+  .hero {
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0; 
+  /*  padding: 0 15px; */  /* some breathing room */
+    text-align: center;
+  }
+
+  .hero-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    margin: 0;
+  }
+  
+  .catch {
+    font-size: 2.4rem;
+  }
+  
+  .hero h3 .catch {
+  font-size: 1.5rem;
+}
+
+
+.hero-text h1,
+.hero-text h3,
+.hero-text p, 
+.About-text h2, 
+.About-text p {
+  padding-bottom: 1px;
+  width: 100%;
+/*  margin-bottom: 10px; */
+  letter-spacing: 0.1rem;
+  text-align: center;
+  margin: 8px 0;
+}
+
+ h1 {
+  font-size: 2.4rem;
+  font-weight: 900;
+  text-wrap: nowrap;
+  line-height: 2.5rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-wrap: nowrap;
+  line-height: 1.3rem;
+}
+
+p {
+  font-size: 0.8rem;
+/*  letter-spacing: 0.1rem; */
+  line-height: 1.4rem;
+  padding: 0 12px; /* padding for the p element*/
+}
+
+.hero-text p {
+  padding: 0 14px;
+}
+
+.hero-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  margin: 0 0 20px 0;
+/*  margin-bottom: 20px; */
+  }
+
+.eagle {
+  width: 300px;
+  height: 300px;
+/*  border-radius: 50%; */
+}
+
+.togroupit {
+  align-content: center;
+  width: 100%;
+}
+
+.social-icons {
+  display: flex;
+  margin-top: 1.5rem;
+  width: 100%;
+  gap: 20px; 
+  padding: 0;
+  box-sizing: border-box; 
+  justify-content: center; 
+}
+
+.social-icons a {
+  display: inline-flex;
+  align-items: center; 
+  justify-content: center; 
+  width: 40px;
+  height: 40px;
+  padding: 15px;
+   border: 2px solid transparent;
+}
+
+.social-icons a i {
+  font-size: 1.5rem;
+}
+
+
+.info {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 45px;
+  margin: 1.5rem 0 0 0;
+}
+
+.info .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+/*  width: 20%;*/
+  width: 20px;
+  margin: 0;  
+  font-size: 12px;
+  font-weight: 500;
+}
+
+
+.info .btn:nth-child(1) {
+  font-weight: 500;
+  font-size: 15px;
+  width: auto;
+  padding: 8px 20px;
+}
+
+
+.info .ah {
+/*  width: 30%; */
+  width: auto;
+  font-size: 15px;
+  font-weight: 800;
+  padding: 7px 25px;
+}
+
+.About {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  width: 100%;
+  height: auto;
+/*  margin: 70px 0; */
+  margin: 0;
+  padding: var(--section-padding);
+}
+
+.About-img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  height: 300px;
+  margin: 0 0 20px 0;
+}
+
+.About .eagle {
+  width: 300px;
+  height: 300px;
+/*  border-radius: 50%; */
+}
+
+.About-text {
+  flex: 1;
+  width: 100%;
+  height: auto;
+  margin: 0;
+  text-align: center;
+}
+
+.About h2 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  text-wrap: nowrap;
+  line-height: 2.5rem;
+  box-sizing: border-box;
+  padding: 0;
+}
+
+.About .catch {
+  font-size: 2.2rem;
+}
+
+.About .btn {
+    font-size: 15px;
+  width: auto;
+  padding: 8px 20px;
+  margin-top: 12px;
+}
+
+.Services {
+  width: 100%;
+  height: auto;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  background-color: black;
+  padding: var(--section-padding); 
+  }
+
+.Services h2 {
+  width: 100%;
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin: 0; 
+  padding: 0;
+  text-align: center;  /* General margin for'll h2 elements */
+  margin-bottom: 20px;
+}
+
+.host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; 
+  }
+
+.card1 {
+ text-align: center; 
+ color: black;
+ box-sizing: border-box;
+ background: linear-gradient(180deg,
+   #FF1d15 ,
+  #DF9008 );
+  border-radius: 20px;
+  height: 350px;
+  width: 100%;
+  padding: 0 10px;
+  transition: transform 0.3s ease-in, border-radius 0.4s ease-out;
+}
+
+.card1:hover {
+  transform: translateY(-1px) scale(1.15);
+  border-radius: 35px;
+  width: 83vw;
+}
+
+.s-logo {
+  font-size: 3rem;
+  font-weight: 900;
+  margin-bottom: 0;
+ line-height: 0; 
+ margin: 50px 0;
+/*  line-height: 8.2rem; */
+}
+
+.Services h3 {
+  font-size: 2.5rem;
+  line-height: 3.1rem; 
+/*  line-height: 3.5rem; */
+  margin-bottom: 25px;
+}
+
+.Services p {
+  font-weight: 400;
+  margin-top: 10px;
+  margin-bottom: 0;
+  text-align: center;
+  padding: 0 20px;
+}
+
+.Projects {
+  width: 100%;
+  height: auto;
+  padding: var(--section-padding);
+  box-sizing: border-box;
+  background-color: #121212;
+}
+
+.Projects h2 {
+  width: 100%;
+  font-size: 2.2rem;
+  font-weight: 900;
+  text-align: center;
+  margin: 0;
+  margin-bottom: 20px;
+}
+
+.house2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.house3 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  gap: 30px; 
+  text-align: center;
+  width: 100%;
+}
+
+.card2 {
+  border-radius: 25px;
+  padding: 20px; 
+  text-align: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+/*  justify-content: space-between; */
+  transition: transform 0.3s ease-in;
+}
+
+.card2:hover {
+   transform: scale(1.05);
+}
+
+.card-img {
+  width: 100%;
+  height: 150px;
+  margin-bottom: 20px;
+}
+
+.review-btn {
+  margin-top: 20px;
+  padding: 10px 15px;
+}
+
+.Contact-form {
+  width: 100%;
+  height: auto;
+  padding: var(--section-padding);
+}
+
+.Contact-form h2 {
+  font-size: 2.2rem;
+  line-height: 0;
+  margin-bottom: 50px;
+  padding: 0;
+}
+
+.house4 {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto;
+  text-align: center;
+  width: 100%;
+  height: auto;
+  padding: 0;
+  justify-items: center;
+  gap: 25px;
+}
+
+.input1 {
+  width: 100%;
+  height: 370px; /* resize when ure through */
+  margin: auto;
+}
+
+.input2 {
+/*  width: 400px; */
+  width: 100%; 
+  height: 370px;
+  margin: auto;
+}
+
+.input2 .btn {
+  margin-top: 25px;
+  font-size: 15px;
+}
+
+
+.Contact-form input {
+/*  width: 450px; */
+width: 100%;
+  height: 70px; /* To increase the output this guy*/
+  padding: 20px 30px;
+  margin-bottom: 25px;
+  font-size: 0.9rem;
+}
+
+.waste-em {
+  width: 100%;
+  height: 250px;     /* adjust this value */
+  font-size: 1.0rem;
+  margin-top: 30px;
+}
+
+.hooah {
+  width: 100%;
+  height: auto;
+/*  padding: var(--section-padding); */
+  padding: 20px 15px 50px 15px;
+  background-color: #121212;
+  text-align: center;
+  margin: 0;
+  bottom: 0;
+}
+
+.oorah {
+  justify-content: center;
+  align-items: center;
+}
+
+.hooah .social-icons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+  gap: 30px;
+}
+
+.summary {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.summary a {
+  display: flex;
+  justify-content: center;
+  margin: 0 9px;
+  font-size: 0.75rem;
+  text-wrap: nowrap;
+}
+
+.sign-out h5 {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1rem;
+  font-weight: 300;
+  font-family: 'Roboto Mono', sans-serif;
+  margin: 0;
+  padding: 0;
+  text-wrap: nowrap;
+}
+
+.sign-out .catch {
+  font-weight: 300;
+  font-size: 1rem;
+  font-family: 'Montserrat';
+  padding: 0;
+}
+
+/* Hamburger */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 32px;
+  height: 24px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+  position: relative;
+}
+
+.hamburger span {
+  display: block;
+  height: 3px;
+  background: white;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* Transform into X */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* Fullscreen dropdown */
+.dropdown {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: black;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 60px;
+
+  transform: translateY(-100%);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.4s ease-in-out, opacity 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.dropdown.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Left side (vertical logo) */
+.menu-left {
+  flex: 0 0 auto;
+}
+
+.logo-vertical {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 10rem;
+  font-weight: bold;
+ /* color: white; */
+ background:
+  linear-gradient(
+  270deg,
+  #DF8908 10%,
+  #FF1d15 100%);
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 20px;
+  text-transform: uppercase; 
+  margin: 0;
+  transform: scale(1.7);
+}
+
+/* Right side (nav links) */
+.menu-right {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  align-items: flex-start;
+}
+
+.menu-right a {
+  font-size: 1.8rem;
+  color: white;
+  text-decoration: none;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+/* Gradient underline (hover/active) */
+.menu-right a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 1px;
+  background: linear-gradient(270deg, #DF8908, #FF1d15);
+  transition: width 0.4s ease;
+}
+
+.menu-right a:hover::after,
+.menu-right a.active::after {
+  width: 100%;
+}
+
+/* Small screens */
+@media (max-width: 768px) {
+  .dropdown {
+    padding: 30px 40px;
+  }
+
+  .logo-vertical {
+    font-size: 2rem;
+  }
+
+  .menu-right a {
+    font-size: 1.5rem;
+  }
+}
+
+}
