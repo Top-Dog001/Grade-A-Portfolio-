@@ -51,7 +51,6 @@ body {
   top: 0;
   left: 0;
   z-index: 999;
-  backdrop-filter: blur(20px);
 
   transition: transform 0.3s ease-in-out; /* smooth slide effect */
 }
@@ -296,7 +295,8 @@ p {
 }
 
 .hero-text p {
-  padding: 0 0 0 27px;
+/*  padding: 0 0 0 27px; */
+  text-align: right;
 }
 
 .hero-img {
