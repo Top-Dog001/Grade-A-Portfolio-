@@ -300,8 +300,10 @@ p {
 }
 
 .hero-text p {
-  padding: 0 0 0 40px; 
-  text-align: right;
+  max-width: 320px; /* control how wide it can go */
+  text-align: right; /* keep it clean on the left edge */
+  margin: 0 0 0 76px;   /* center it horizontally if needed */
+  line-height: 1.6; /* improve readability */
 }
 
 .hero-img {
